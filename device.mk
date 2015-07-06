@@ -22,7 +22,7 @@ PRODUCT_CHARACTERISTICS := tablet
 DEVICE_PACKAGE_OVERLAYS += device/samsung/lt03wifi/overlay
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := xlarge hdpi xhdpi
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # Audio
@@ -31,12 +31,11 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
-    mixer_paths.xml \
     tinymix
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio_effects.conf:system/etc/audio_effects.conf \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2560
@@ -190,6 +189,10 @@ PRODUCT_PACKAGES += \
 # for off charging mode
 PRODUCT_PACKAGES += \
     charger_res_images
+
+# CPU producer to CPU consumer not supported
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.bq.gpu_to_cpu_unsupported=1
 
 # call dalvik heap config
 $(call inherit-product, frameworks/native/build/tablet-10in-xhdpi-2048-dalvik-heap.mk)
