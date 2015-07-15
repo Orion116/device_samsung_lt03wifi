@@ -31,5 +31,8 @@ TARGET_OTA_ASSERT_DEVICE := lt03wifi,lt03wifiue
 # Kernel
 TARGET_KERNEL_CONFIG := BrokenNote_lt03wifi_defconfig
 
+# Selinux
+include device/samsung/lt03-common/sepolicy/sepolicy.mk
+
 # inherit from the proprietary version
 -include vendor/samsung/lt03wifi/BoardConfigVendor.mk
